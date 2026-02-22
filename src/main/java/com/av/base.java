@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class base {
@@ -43,8 +44,9 @@ public class base {
 
     protected base screenshot () {
         TakesScreenshot screenshot = (TakesScreenshot) driver;
+        String fileName = "image_" + dateTime().replace(":", ".");
         try {
-            FileUtils.copyFile(screenshot.getScreenshotAs(OutputType.FILE), new File("src/img/image.png"));
+            FileUtils.copyFile(screenshot.getScreenshotAs(OutputType.FILE), new File("src/img/" + fileName + ".png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -66,6 +68,10 @@ public class base {
 
     protected void quit () {
         driver.quit();
+    }
+
+    private String dateTime () {
+        return LocalDateTime.now().toLocalDate() + "_" + LocalDateTime.now().toLocalTime();
     }
 
 }
