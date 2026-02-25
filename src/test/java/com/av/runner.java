@@ -1,5 +1,6 @@
 package com.av;
 
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class runner extends base {
@@ -8,6 +9,9 @@ public class runner extends base {
     public void runner () {
         launch("chrome");
         get("ibm.com").screenshot();
+        System.out.println(jsonReader(isArray("xpath", "src/main/resources/locators.locators"), 1, "xpath"));
+        findByXpath(jsonReader(isArray("xpath", "src/main/resources/locators.locators"), 1, "xpath")).click();
+        screenshot();
     }
 
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class base {
+public class base extends utils {
 
     private static WebDriver driver;
 
@@ -32,14 +32,12 @@ public class base {
         return this;
     }
 
-    protected base findByXpath (String xpath) {
-        driver.findElement(By.xpath(xpath));
-        return this;
+    protected WebElement findByXpath (String xpath) {
+        return driver.findElement(By.xpath(xpath));
     }
 
-    protected base findsByXpath (String xpath) {
-        List<WebElement> elements = driver.findElements(By.xpath(xpath));
-        return this;
+    protected List<WebElement> findsByXpath (String xpath) {
+        return driver.findElements(By.xpath(xpath));
     }
 
     protected base screenshot () {
