@@ -1,0 +1,7 @@
+{
+"accept-all": {
+        "id": ["truste-consent-button"],
+        "text": "Accept all",
+        "xpath": ["//button[@id='truste-consent-button']", "//button[.='Accept all']"]
+    }
+}
