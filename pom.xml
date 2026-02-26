@@ -13,6 +13,21 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+      <build>
+          <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>3.2.5</version> <!-- Use latest stable version -->
+              <configuration>
+                  <suiteXmlFiles>
+                      <!-- Points to your TestNG configuration file -->
+                      <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile>
+                  </suiteXmlFiles>
+              </configuration>
+          </plugin>
+          </plugins>
+      </build>
 
   <dependencies>
     <dependency>
