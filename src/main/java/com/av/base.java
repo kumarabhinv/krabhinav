@@ -19,7 +19,6 @@ public class base extends utils {
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
                 driver = new ChromeDriver();
-                driver.get("https://www.google.com");
         }
         return driver;
     }
