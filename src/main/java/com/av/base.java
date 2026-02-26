@@ -1,5 +1,6 @@
 package com.av;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.apache.commons.io.FileUtils;
@@ -17,7 +18,7 @@ public class base extends utils {
     protected WebDriver launch (String browser) {
         switch (browser) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
         }
         return driver;
