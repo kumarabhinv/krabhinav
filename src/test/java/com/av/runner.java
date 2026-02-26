@@ -2,10 +2,12 @@ package com.av;
 
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 public class runner extends base {
 
     @Test
-    public void runner () {
+    public void runner () throws MalformedURLException {
         launch("chrome");
         get("ibm.com").screenshot();
         System.out.println(jsonReader(isArray("xpath", "src/main/resources/locators.locators"), 1, "xpath"));
