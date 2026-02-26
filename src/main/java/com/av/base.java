@@ -5,9 +5,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +19,7 @@ public class base extends utils {
     private static WebDriver driver;
     private String screenshotName;
 
-    protected WebDriver launch (String browser) {
+    protected WebDriver launch (String browser) throws MalformedURLException {
         switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
@@ -25,7 +28,13 @@ public class base extends utils {
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--remote-allow-origins=*");
-                driver = new ChromeDriver(options);
+                String gridUrl = System.getProperty("grid.url");
+                WebDriverManager.chromedriver().setup();
+                if (gridUrl != null && !gridUrl.isEmpty()) {
+                    driver = new RemoteWebDriver(new URL(gridUrl), options);
+                } else {
+                    driver = new ChromeDriver(options);
+                }
         }
         return driver;
     }
