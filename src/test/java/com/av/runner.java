@@ -12,6 +12,7 @@ public class runner extends base {
         System.out.println(jsonReader(isArray("xpath", "src/main/resources/locators.locators"), 1, "xpath"));
         findByXpath(jsonReader(isArray("xpath", "src/main/resources/locators.locators"), 1, "xpath")).click();
         screenshot();
+        screenshot("ibm_screenshot_");
     }
 
 }

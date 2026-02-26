@@ -12,6 +12,7 @@ import java.util.List;
 public class base extends utils {
 
     private static WebDriver driver;
+    private String screenshotName;
 
     protected WebDriver launch (String browser) {
         switch (browser) {
@@ -42,12 +43,23 @@ public class base extends utils {
 
     protected base screenshot () {
         TakesScreenshot screenshot = (TakesScreenshot) driver;
-        String fileName = "image_" + dateTime().replace(":", ".");
+        String fileName;
+        if(screenshotName == null) {
+            fileName = "image_" + dateTime().replace(":", ".");
+        } else {
+            fileName = screenshotName + dateTime().replace(":", ".");
+        }
         try {
             FileUtils.copyFile(screenshot.getScreenshotAs(OutputType.FILE), new File("src/img/" + fileName + ".png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return this;
+    }
+
+    protected base screenshot (String screenshotName) {
+        this.screenshotName = screenshotName;
+        screenshot();
         return this;
     }
 
