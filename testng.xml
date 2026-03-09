@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org">
+<suite name="Playwright Suite">
+    <test name="Google Search Tests">
+        <classes>
+            <class name="com.av.TraversingGoogle"/>
+        </classes>
+    </test>
+</suite>

@@ -14,7 +14,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <playwright.version>1.50.0</playwright.version> <!-- Latest stable version -->
-        <junit.version>5.10.2</junit.version>
+        <testng.version>7.7.1</testng.version>
     </properties>
 
     <dependencies>
@@ -25,20 +25,11 @@
             <version>${playwright.version}</version>
         </dependency>
 
-        <!-- JUnit 5 API for writing tests -->
+        <!-- The TestNG library -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- JUnit 5 Engine for running tests -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
         </dependency>
     </dependencies>
 
@@ -49,6 +40,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <file>testng.xml</file>
+                    </suiteXmlFiles>
+                </configuration>
             </plugin>
 
             <!-- Compiler plugin to ensure the project uses Java 17+ -->
