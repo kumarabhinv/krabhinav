@@ -1,30 +1,39 @@
 pipeline {
     agent {
-        docker { 
-            image 'markhobson/maven-chrome:jdk-21' 
-            args  '--shm-size=2g --user root' // Use root inside the container to avoid permission issues
+        docker {
+            image 'markhobson/maven-chrome'
         }
     }
-
     tools {
         maven 'Maven'
     }
-
     stages {
-        stage('Build') {
+        stage ("Checkout") {
             steps {
-                echo 'Cloning repository'
-                git branch: 'main',
-                    url: 'https://github.com/kumarabhinv/krabhinav.git'
+                git url: "https://github.com/kumarabhinv/krabhinav.git",
+                    branch: "main"
+                echo "Checkout complete."
             }
         }
-
-        stage('Test') {
+        stage ("Test") {
             steps {
+                echo "Starting test.."
                 script {
-                        sh "mvn clean test"
-                    }
+                    sh "mvn clean"
+                    sh "mvn test"
                 }
             }
         }
+    }
+    post {
+        success {
+            echo "Pipeline execution successful."
+        }
+        failure {
+            echo "Pipeline execution failed."
+        }
+        always {
+            echo "Pipeline execution completed."
+        }
+    }
 }
